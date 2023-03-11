@@ -1,0 +1,9 @@
+.products_table {
+    width: 70%;
+    margin-top: 7%;
+}
+
+.products_table_head {
+    background-color: #000;
+    color: #fff;
+}
