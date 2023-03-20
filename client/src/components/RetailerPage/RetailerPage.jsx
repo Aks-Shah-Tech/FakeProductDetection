@@ -27,18 +27,27 @@ const style = {
 
 const RetailerPage = () => {
   const [open, setOpen] = useState(false);
+  const [retname, setRetname] = useState();
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
   const dispatch = useDispatch();
   const { retailers } = useSelector((state) => state.getAllRetailers);
-
+  let rets = retailers;
   useEffect(() => {
-    dispatch(getAllRetailers(toast));
+    dispatch(getAllRetailers());
   }, [retailers])
 
   const deleteRetailerById = (id) => {
     dispatch(deleteRetailer(id, toast));
+  }
+
+  const searchFilter = (rname) => {
+    if(!rname){
+      rets = retailers;
+    }else{
+      rets = retailers.filter(retailer => retailer.name.toLowerCase().includes(rname.toLowerCase()));
+    }
   }
   
   return (
@@ -51,8 +60,8 @@ const RetailerPage = () => {
 
             <div class="search">
               <i class="fa fa-search"></i>
-              <input type="text" class="form-control" placeholder="Search a Retailer..." />
-              <button class="btn btn-primary"> <SearchIcon /> </button>
+              <input type="text" value={retname} onChange={(e) => setRetname(e.target.value)} class="form-control" placeholder="Search a Retailer by its name..." />
+              <button class="btn btn-primary" onClick={searchFilter(retname)}> <SearchIcon /> </button>
             </div>
 
           </div>
@@ -78,7 +87,7 @@ const RetailerPage = () => {
 
         </div>
       </div>
-      <div class="card my-5 shadow table_card">
+      <div class="card shadow table_card">
         <div class="card-body">
 
           <table class="table">
@@ -94,8 +103,8 @@ const RetailerPage = () => {
             </thead>
             <tbody>
               {
-                retailers && (
-                  retailers.map((retailer, i)=>{
+                rets && (
+                  rets.map((retailer, i)=>{
                     return <tr>
                     <th scope="row">{i+1}</th>
                     <td>{retailer.retId}</td>

@@ -8,6 +8,9 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import ReportIcon from '@mui/icons-material/Report';
+import { reportProduct } from "../../Actions/Company";
+import {useNavigate} from "react-router-dom";
+import HomeIcon from '@mui/icons-material/Home';
 
 const validEmailRegex = RegExp(
   /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i
@@ -58,15 +61,14 @@ const ReportForm = () => {
 
     setVal({...val, errors, [name]: value});
   }
-
+  const navigate = useNavigate();
   const dispatch = useDispatch();
+  const { product } = useSelector((state) => state.verifyProduct);
+  const { loading } = useSelector((state) => state.reportProduct);
 
   const submitHandler = (e) => {
     e.preventDefault();
-    // dispatch(loginAdmin(email, password, toast));
-    console.log(val.name);
-    console.log(val.email);
-    console.log(val.query);
+    dispatch(reportProduct(product.companyId, product._id, product.name, val.name, val.email, val.query, toast));
   }
   return (
     <Container component="main" maxWidth="sm">
@@ -132,10 +134,21 @@ const ReportForm = () => {
             fullWidth
             variant="contained"
             color="error"
+            disabled={loading}
             sx={{ mt: 3, mb: 2 }}
             endIcon={<ReportIcon />}
           >
             Report
+          </Button>
+          <Button
+            fullWidth
+            variant="contained"
+            onClick={() => navigate("/")}
+            disabled={loading}
+            sx={{ mt: 1, mb: 2 }}
+            endIcon={<HomeIcon />}
+          >
+            Back Home
           </Button>
         </Box>
       </Box>

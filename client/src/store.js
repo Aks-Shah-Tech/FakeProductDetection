@@ -1,6 +1,6 @@
 import {configureStore} from '@reduxjs/toolkit';
 import { LoginAdminReducer } from './Reducers/Admin';
-import { getAllCompaniesReducer, LoginCompanyReducer, registerCompanyReducer, verifyCompanyReducer } from './Reducers/Company';
+import { getAllCompaniesReducer, LoginCompanyReducer, registerCompanyReducer, reportProductReducer, verifyCompanyReducer } from './Reducers/Company';
 import { getAllProductsReducer, getProductReducer, getRetailerReducer, registerProductReducer, verifyProductReducer } from './Reducers/Product';
 import { deleteRetailerReducer, getAllRetailerReducer, registerRetailerReducer, verifyRetailerReducer } from './Reducers/Retailer';
 
@@ -19,6 +19,7 @@ const store = configureStore({
         getRetailer: getRetailerReducer,
         verifyRetailer: verifyRetailerReducer,
         loginAdmin: LoginAdminReducer,
+        reportProduct: reportProductReducer,
     },
 });
 

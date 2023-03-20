@@ -1,24 +1,22 @@
 import React, { useState, useEffect } from 'react';
 import "./LandingPage.css";
 import TextField from '@mui/material/TextField';
-import User from "../../images/user.png";
 import qrcode from "../../images/qr.png";
 import Button from '@mui/material/Button';
-import SearchIcon from '@mui/icons-material/Search';
-import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 import Box from '@mui/material/Box';
 import Signup from '../Signup/Signup';
 import Login from '../Login/Login';
-import { Link, useNavigate } from 'react-router-dom';
-// import QRCode from "react-qr-code";
+import { Link } from 'react-router-dom';
 import QRCode from "qrcode.react";
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { clearRetailer } from '../../Actions/Retailer';
 import { clearProduct } from '../../Actions/Product';
 import ArrowCircleRightIcon from '@mui/icons-material/ArrowCircleRight';
 import LoginIcon from '@mui/icons-material/Login';
 import HowToRegIcon from '@mui/icons-material/HowToReg';
+import LooksOneIcon from '@mui/icons-material/LooksOne';
+import LooksTwoIcon from '@mui/icons-material/LooksTwo';
 
 const style = {
     position: 'absolute',
@@ -28,9 +26,6 @@ const style = {
     width: 900,
     height: 500,
     bgcolor: 'transparent',
-    // border: '2px solid #000',
-    // boxShadow: 24,
-    // p: 2,
 };
 
 const styleRegister = {
@@ -41,9 +36,6 @@ const styleRegister = {
     width: 900,
     height: 500,
     bgcolor: 'transparent',
-    // border: '2px solid #000',
-    // boxShadow: 24,
-    // p: 2,
 };
 
 const style2 = {
@@ -65,10 +57,10 @@ const LandingPage = () => {
 
     const dispatch = useDispatch();
 
-    useEffect(()=>{
+    useEffect(() => {
         dispatch(clearProduct());
         dispatch(clearRetailer());
-    },[])
+    }, [])
 
     const [open, setOpen] = useState(false);
     const handleOpen = () => setOpen(true);
@@ -100,15 +92,14 @@ const LandingPage = () => {
 
     return (
         <div className="landing_page_container">
-            <nav class="navbar navbar-dark navbar-expand-md pr-3 pl-3 landing_page_navbar">
-                <div class="container-fluid">
-                    <a class="navbar-brand px-2 navbar_title">Fakeproductdetection</a>
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
+            <nav className="navbar navbar-dark navbar-expand-md pr-3 pl-3 landing_page_navbar">
+                <div className="container-fluid">
+                    <a className="navbar-brand px-2 navbar_title">Fakeproductdetection</a>
+                    <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span className="navbar-toggler-icon"></span>
                     </button>
-                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                        <ul class="nav navbar-nav ms-auto px-3 links">
-                            {/* <li class="nav-item"><a class="nav-link px-3 navbar_login">Login</a></li> */}
+                    <div className="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul className="nav navbar-nav ms-auto px-3 links">
 
                             <li className="nav-item px-3">
                                 <Button onClick={handleOpenLogin} variant="contained" endIcon={<LoginIcon />}>Login</Button>
@@ -123,8 +114,6 @@ const LandingPage = () => {
                                     </Box>
                                 </Modal>
                             </li>
-
-                            {/* <li class="nav-item"><a class="nav-link px-3 navbar_signup">Signup</a></li> */}
 
                             <li className="nav-item">
                                 <Button onClick={handleOpen} variant="contained" endIcon={<HowToRegIcon />}>Signup</Button>
@@ -143,13 +132,27 @@ const LandingPage = () => {
                     </div>
                 </div>
             </nav>
-            <div className="container my-5">
-                <div class="card user_section_card">
-                    <div class="card-body">
+            <div className="container my-5 home_container">
+                <div className="card user_section_card">
+                    <div className="card-body">
                         <div className="row">
                             <div className="col-md-7 user_section_content_col">
                                 <p className="user_section_content">
-                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit, dignissimos. Ipsa nisi, atque nam illo, ut voluptas quaerat totam dolorum natus laudantium ratione quo dignissimos deserunt ab molestias adipisci inventore. Consectetur incidunt eveniet, dolorum aperiam nihil tempore mollitia officia vel fuga sed qui nulla vitae labore ipsum quia aliquam vero nemo? Magnam ut unde delectus quisquam maxime.
+                                    <span className="span1">Welcome to the Fake Product Detection Application</span>
+                                    <br />
+                                    <br />
+                                    <span className="span2">
+                                        We have 2 step verification process:
+                                        <br />
+                                        <LooksOneIcon /> Scan the QR code of the product.
+                                        <br />
+                                        <LooksTwoIcon /> Scan the Retailer QR code.
+                                    </span>
+                                    <span className="span3">
+                                        <br />
+                                        <br />
+                                        If both the test passes the product is verified other wise you can raise the query directly to the company with just one click.
+                                    </span>
                                 </p>
                                 <Link to="/verify/product">
                                     <button className="qrcode_btn">
@@ -160,27 +163,25 @@ const LandingPage = () => {
 
                             </div>
                             <div className="col-md-5 user_section_content_col_2">
-                                <img src="https://img.freepik.com/free-vector/water-contamination-detection-system-abstract-concept-illustration_335657-3772.jpg" alt="product_detection" className="user_section_image" />
+                                <img src="https://cdn.dribbble.com/users/579758/screenshots/7727505/media/655769bd430477c4df30866d2c215223.jpg?compress=1&resize=1200x900&vertical=top" alt="product_detection" className="user_section_image" />
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <div class="card my-5 retailer_section_card">
-                    <div class="card-body">
+                <div className="card my-5 retailer_section_card">
+                    <div className="card-body">
                         <div className="row">
                             <div className="col-md-5 col-sm-12">
                                 <p className="my-2 retailer_section_content">
                                     Generate Retailer QRCode
                                 </p>
                             </div>
-                            <div className="col-md-4 col-sm-12" style={{display: 'flex', justifyContent: 'end'}}>
-                            <TextField value={rid} onChange={(e) => setRid(e.target.value)} id="outlined-basic" label="Enter RID" variant="standard" className='input_ret' sx={{height: "3px", width: "100%"}} />
+                            <div className="col-md-4 col-sm-12" style={{ display: 'flex', justifyContent: 'end' }}>
+                                <TextField value={rid} onChange={(e) => setRid(e.target.value)} id="outlined-basic" label="Enter RID" variant="standard" className='input_ret' sx={{ height: "3px", width: "100%" }} />
                             </div>
                             <div className="col-md-3 col-sm-12 retailer_section_content_col_2">
-                                {/* <input type="text" value={rid} onChange={(e) => setRid(e.target.value)} className="input_retailer" placeholder="Enter RID" />
-                                <button onClick={handleOpenQr} className="generate_btn">Generate</button> */}
-                                
+
                                 <Button onClick={handleOpenQr} variant='contained' endIcon={<ArrowCircleRightIcon />}>Generate QRCode</Button>
                                 <Modal
                                     open={openQr}

@@ -26,23 +26,23 @@ const ProductsList = () => {
                 </thead>
                 <tbody>
                     {
-                        products && products.map((product, index) => 
-                            (<tr>
-                                <th scope="row" className='text-center'>{index+1}</th>
-                                <td className='text-center'>{product.name}</td>
-                                <td className='text-center'>Rs.{product.price}</td>
-                                <td className='text-center'>{product.description}</td>
-                                <td>
+                        products && products.map((product, index) =>
+                        (<tr>
+                            <th scope="row" className='text-center'>{index + 1}</th>
+                            <td className='text-center'>{product.name}</td>
+                            <td className='text-center'>Rs.{product.price}</td>
+                            <td className='text-center'>{product.description}</td>
+                            <td>
                                 <div style={{ height: "auto", margin: "0 auto", maxWidth: 64, width: "100%" }}>
-                                            <QRCode
-                                                size={256}
-                                                style={{ height: "auto", maxWidth: "100%", width: "100%" }}
-                                                value={product._id}
-                                                viewBox={`0 0 256 256`}
-                                            />
-                                        </div>
-                                </td>
-                            </tr>)
+                                    <QRCode
+                                        size={256}
+                                        style={{ height: "auto", maxWidth: "100%", width: "100%" }}
+                                        value={product._id}
+                                        viewBox={`0 0 256 256`}
+                                    />
+                                </div>
+                            </td>
+                        </tr>)
                         )
                     }
 

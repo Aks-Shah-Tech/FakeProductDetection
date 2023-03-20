@@ -1,0 +1,36 @@
+.profile_container {
+    display: flex;
+    justify-content: center;
+    margin-top: 10%;
+}
+
+.profile_card {
+    width: 70%;
+    padding: 10px;
+    background: rgba(42, 90, 234, 0.4);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+.profile_img {
+    width: 75%;
+    height: 70%;
+}
+
+.company_details {
+    font-weight: 500;
+}
+
+.count {
+    font-weight: 500;
+    padding: 5px 15px;
+    background: rgba(42, 90, 234, 0.4);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    border-radius: 5px;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+}

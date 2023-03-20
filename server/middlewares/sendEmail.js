@@ -11,22 +11,40 @@ exports.sendEmail = async (options) => {
     //     service: process.env.SMPT_SERVICE,
     // });
 
-    var transporter = nodeMailer.createTransport({
-        host: "sandbox.smtp.mailtrap.io",
-        port: 2525,
-        auth: {
-          user: "890b71e74d7300",
-          pass: "01e4654d087f5b"
-        }
-      });
+    // var transporter = nodeMailer.createTransport({
+    //     host: "sandbox.smtp.mailtrap.io",
+    //     port: 2525,
+    //     auth: {
+    //       user: "890b71e74d7300",
+    //       pass: "01e4654d087f5b"
+    //     }
+    //   });
+    const  transporter = nodeMailer.createTransport({
+      service: 'gmail',
+      auth: {
+        type: 'OAuth2',
+        user: process.env.USER,
+        pass: process.env.PASS,
+        clientId: process.env.CLIENT_ID,
+        clientSecret: process.env.CLIENT_SECRET,
+        refreshToken: process.env.REFRESH_TOKEN
+      }
+    })
 
+    // const mailOptions = {
+    //     from: process.env.SMPT_MAIL,
+    //     to: options.email,
+    //     subject: options.subject,
+    //     text: options.message,
+    //     html: options.html,
+    // }
     const mailOptions = {
-        from: process.env.SMPT_MAIL,
-        to: options.email,
-        subject: options.subject,
-        text: options.message,
-        html: options.html,
-    }
+      from: process.env.EMAIL_FROM,
+      to: options.email,
+      subject: options.subject,
+      text: options.message,
+      html: options.html,
+  }
 
     await transporter.sendMail(mailOptions);
 }

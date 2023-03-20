@@ -67,7 +67,7 @@ const VerifyRetailer = () => {
           style={previewStyle}
         />}
       </div>
-      <p style={textStyle}>Scanned QR Code: {result}</p>
+      <p style={textStyle}>Scan QR Code {result}</p>
     </>
   )
 }

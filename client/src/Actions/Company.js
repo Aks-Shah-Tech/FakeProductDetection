@@ -153,6 +153,38 @@ export const verifyCompanyReject = (companyId, toast) => async (dispatch) => {
     }
 }
 
+export const reportProduct = (companyId, productId, productName, name, email, query, toast) => async (dispatch) => {
+    try {
+        dispatch({
+            type: "reportProductRequest",
+        });
+
+        const {
+            data
+        } = await axios.post(
+            "/api/v1/admin/report", {
+                companyId, productId, productName, name, email, query
+            }, {
+                headers: {
+                    "Content-Type": "application/json",
+                }
+            }
+        )
+
+        dispatch({
+            type: "reportProductSuccess",
+            payload: data.message,
+        });
+        toast.success("Successfully reported the product.");
+    } catch (error) {
+        dispatch({
+            type: "reportProductFailure",
+            payload: error.response.data.message,
+        });
+        toast.error(error.response.data.message);
+    }
+}
+
 export const getAllCompanies = (toast) => async (dispatch) => {
     try {
         dispatch({
@@ -191,7 +223,7 @@ export const loadCompany = () => async (dispatch) => {
 
         dispatch({
             type: "LoadingSuccess",
-            payload: data.user
+            payload: data.company
         });
     } catch (error) {
         dispatch({

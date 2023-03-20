@@ -2,11 +2,10 @@ import './App.css';
 import React, {useEffect} from 'react';
 import VerifyProduct from './components/VerifyProduct/VerifyProduct';
 import {BrowserRouter as Router, Routes, Route} from 'react-router-dom';
-import {ToastContainer} from "react-toastify";
+import {toast, ToastContainer} from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import RegisterProduct from './components/RegisterProduct/RegisterProduct';
 import Login from './components/Login/Login';
-import Register from './components/Register/Register';
 import ViewProduct from './components/ViewProduct/ViewProduct';
 import ProductsList from './components/ProductsList/ProductsList';
 import RegisterCompany from './components/RegisterCompany/RegisterCompany';
@@ -27,11 +26,15 @@ import NotFound from './components/NotFound/NotFound';
 import AdminLogin from './components/AdminLogin/AdminLogin';
 import ReportForm from './components/ReportForm/ReportForm';
 import Profile from './components/Profile/Profile';
+import { getAllProducts } from './Actions/Product';
+import { getAllRetailers } from './Actions/Retailer';
 function App() {
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(loadCompany());
+    dispatch(getAllProducts());
+    dispatch(getAllRetailers());
   }, []);
 
   const {isAuthenticated} = useSelector((state) => state.loginCompany);
@@ -41,13 +44,6 @@ function App() {
       <Router>
       <ToastContainer theme="dark" />
       <Routes>
-      {/* <Route path="/" element={<LandingPage />} /> */}
-      {/* <Route path="/register/product" element={<RegisterProduct />} />
-      <Route path="/verify/product" element={<VerifyProduct />} />
-      <Route path="/view/product/:id" element={<ViewProduct />} />
-      <Route path="/products/list" element={<ProductsList />} />
-      <Route path="/register/company" element={<RegisterCompany />} />
-      <Route path="/register/retailer" element={<RegisterRetailer />} /> */}
       <Route path="/" element={isAuthenticated ? <Product /> : <LandingPage />} />
       <Route path="/retailer" element={isAuthenticated ? <Retailer /> : <LandingPage />} />
       <Route path="/profile" element={isAuthenticated ? <Profile /> : <LandingPage />} />

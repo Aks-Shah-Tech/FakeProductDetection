@@ -129,8 +129,70 @@ exports.rejectRequest = async (req, res) => {
   }
 };
 
-//Todo Create the Login
-// exports.adminLogin = async (req, res) => {};
+exports.report = async (req, res) => {
+  try {
+    let {
+      companyId,
+      productId,
+      productName,
+      name,
+      email,
+      query
+    } = req.body;
+    
+    if (!companyId) {
+      return res
+        .status(400)
+        .json({
+          success: false,
+          message: "Company Id not in request"
+        });
+    }
+    console.log(Company);
+    let company = await Company.findById(companyId);
+    
+    if (!company) {
+      return res
+        .status(400)
+        .json({
+          success: false,
+          message: "Unable to get the Company details"
+        });
+    }
+    //Todo Send the mail to the Company that they are verified now.
+    await sendEmail({
+      email: company.email,
+      subject: "Consumer Report",
+      message: ``,
+      html: `<h2>FAKE PRODUCT DETECTED!!</h2>
+      <br />
+      <h4>Consumer Details</h4>
+      <br />
+      <h5>Consumer Name - ${name}, </h5>
+      <h5>Consumer Email - ${email}, </h5>
+      <h5>Consumer Query - ${query}</h5>
+      <br />
+      <h4>Product Details</h4>
+      <br />
+      <h5>Product Id - ${productId}, </h5>
+      <h5>Product Name - ${productName}</h5>`
+    })
+    return res
+      .status(200)
+      .json({
+        success: true,
+        message: "SuccessFully reported the product."
+      });
+  } catch (error) {
+    console.log(error)
+    return res
+      .status(500)
+      .json({
+        success: false,
+        message: "Internal Server Message"
+      });
+  }
+};
 
 exports.registerAdmin = async (req, res) => {
     try {

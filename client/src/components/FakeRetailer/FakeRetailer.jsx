@@ -1,6 +1,6 @@
 import React from 'react';
 import { Box, Button, Container, Typography } from '@mui/material';
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 import Grid from '@mui/material/Grid';
 
 export default function FakeRetailer() {
@@ -20,20 +20,20 @@ export default function FakeRetailer() {
               Fake Retailer Detected!!
             </Typography>
             <Typography variant="h6" className='my-3'>
-              <span style={{color: "red", fontWeight: "bold"}}>Oops!</span>  This is awkward... You are looking for something
+              <span style={{ color: "red", fontWeight: "bold" }}>Oops!</span>  This is awkward... You are looking for something
               that doesn't actually exist.'
             </Typography>
-            
+
             <div className="row">
               <div className="col-md-6">
-              <Link to="/" style={{textDecoration: 'none'}}>
-            <Button className='my-3' variant="contained">Back Home</Button>
-            </Link>
+                <Link to="/" style={{ textDecoration: 'none' }}>
+                  <Button className='my-3' variant="contained">Back Home</Button>
+                </Link>
               </div>
               <div className="col-md-6">
-              <Link to="/report" style={{textDecoration: 'none'}}>
-            <Button className='my-3' variant="contained" color="error">Report</Button>
-            </Link>
+                <Link to="/report" style={{ textDecoration: 'none' }}>
+                  <Button className='my-3' variant="contained" color="error">Report</Button>
+                </Link>
               </div>
             </div>
           </Grid>

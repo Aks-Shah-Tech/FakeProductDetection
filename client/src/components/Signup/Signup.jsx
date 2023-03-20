@@ -106,6 +106,7 @@ const Signup = () => {
   // const [name, setName] = useState("");
   // const [email, setEmail] = useState("");
   // const [password, setPassword] = useState("");
+  const [show, setShow] = useState(false);
 
   const [val, setVal] = useState({
     CIN: null,
@@ -261,13 +262,16 @@ const Signup = () => {
                   fullWidth
                   name="password"
                   label="Password"
-                  type="password"
+                  type={show ? "text" : "password"}
                   id="password"
                   autoComplete="current-password"
                   helperText={val.errors.password}
                   value={val.password}
                   onChange={handleChange}
                 />
+                {
+                show ? <Button onClick={() => setShow(false)}>hide password</Button> : <Button onClick={() => setShow(true)}>show password</Button>
+              }
                 <Button
                   type="submit"
                   disabled={loading}

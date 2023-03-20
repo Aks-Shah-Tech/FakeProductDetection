@@ -1,6 +1,6 @@
 import React from 'react';
 import { Box, Button, Container, Typography } from '@mui/material';
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 import Grid from '@mui/material/Grid';
 
 export default function NotFound() {
@@ -20,11 +20,11 @@ export default function NotFound() {
               404
             </Typography>
             <Typography variant="h6" className='my-3'>
-              <span style={{color: "red", fontWeight: "bold"}}>Oops!</span>  This is awkward... You are looking for something
+              <span style={{ color: "red", fontWeight: "bold" }}>Oops!</span>  This is awkward... You are looking for something
               that doesn't actually exist.'
             </Typography>
             <Link to="/">
-            <Button className='my-3' variant="contained">Back Home</Button>
+              <Button className='my-3' variant="contained">Back Home</Button>
             </Link>
           </Grid>
           <Grid xs={6}>

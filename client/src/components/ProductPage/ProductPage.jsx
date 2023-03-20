@@ -1,14 +1,16 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import "./ProductPage.css";
 import Button from '@mui/material/Button';
 import SearchIcon from '@mui/icons-material/Search';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 import Box from '@mui/material/Box';
-import RegisterProduct from '../RegisterProduct/RegisterProduct';
 import AddProduct from './AddProduct/AddProduct';
 import ProductTable from './ProductTable/ProductTable';
 import LibraryAddIcon from '@mui/icons-material/LibraryAdd';
+import { useDispatch, useSelector } from 'react-redux';
+import { getAllProducts } from '../../Actions/Product';
+import { getAllRetailers } from '../../Actions/Retailer';
 
 const style = {
   position: 'absolute',
@@ -26,24 +28,42 @@ const ProductPage = () => {
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+  const [prodname, setProdname] = useState();
+
+  const dispatch = useDispatch();
+  const { products } = useSelector((state) => state.getAllProducts);
+  let pdts = products;
+
+  useEffect(() => {
+    dispatch(getAllProducts());
+    dispatch(getAllRetailers());
+  }, [])
+
+  const searchFilter = (pname) => {
+    if (!pname) {
+      pdts = products;
+    } else {
+      pdts = products.filter(product => product.name.toLowerCase().includes(pname.toLowerCase()));
+    }
+  }
 
   return (
     <>
-      <div class="container my-5">
+      <div className="container my-5">
 
-        <div class="row height d-flex justify-content-center align-items-center">
+        <div className="row d-flex justify-content-center align-items-center">
 
-          <div class="col-md-8">
+          <div className="col-md-8">
 
-            <div class="search">
-              <i class="fa fa-search"></i>
-              <input type="text" class="form-control" placeholder="Search a Product..." />
-              <button class="btn btn-primary"> <SearchIcon /> </button>
+            <div className="search">
+              <i className="fa fa-search"></i>
+              <input type="text" value={prodname} onChange={(e) => setProdname(e.target.value)} className="form-control" placeholder="Search a Product..." />
+              <button className="btn btn-primary" onClick={searchFilter(prodname)}> <SearchIcon /> </button>
             </div>
 
           </div>
 
-          <div class="col-md-4">
+          <div className="col-md-4">
 
             <Button onClick={handleOpen} variant="contained" startIcon={<LibraryAddIcon />}>Add Product</Button>
             <Modal
@@ -64,39 +84,9 @@ const ProductPage = () => {
 
         </div>
       </div>
-      <div class="card my-5 shadow table_card">
-        <div class="card-body">
-
-          {/* <table class="table">
-            <thead>
-              <tr class="table-dark">
-                <th scope="col">#</th>
-                <th scope="col">First</th>
-                <th scope="col">Last</th>
-                <th scope="col">Handle</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <th scope="row">1</th>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>@mdo</td>
-              </tr>
-              <tr>
-                <th scope="row">2</th>
-                <td>Jacob</td>
-                <td>Thornton</td>
-                <td>@fat</td>
-              </tr>
-              <tr>
-                <th scope="row">3</th>
-                <td colspan="2">Larry the Bird</td>
-                <td>@twitter</td>
-              </tr>
-            </tbody>
-          </table> */}
-          <ProductTable />
+      <div className="card shadow table_card">
+        <div className="card-body">
+          <ProductTable products={pdts} />
         </div>
       </div>
     </>

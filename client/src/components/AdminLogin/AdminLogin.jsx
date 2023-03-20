@@ -3,7 +3,7 @@ import TextField from "@mui/material/TextField";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
-import {loginAdmin} from "../../Actions/Admin";
+import { loginAdmin } from "../../Actions/Admin";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
@@ -11,6 +11,7 @@ import { toast } from "react-toastify";
 const AdminLogin = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [show, setShow] = useState(false);
 
   const dispatch = useDispatch();
   const { loading } = useSelector((state) => state.loginAdmin)
@@ -21,7 +22,7 @@ const AdminLogin = () => {
   }
   return (
     <Container component="main" maxWidth="sm">
-      
+
       <Box
         sx={{
           boxShadow: 3,
@@ -47,7 +48,7 @@ const AdminLogin = () => {
             name="email"
             autoComplete="email"
             value={email}
-                onChange={(e) => setEmail(e.target.value)}
+            onChange={(e) => setEmail(e.target.value)}
             autoFocus
           />
           <TextField
@@ -56,12 +57,15 @@ const AdminLogin = () => {
             fullWidth
             name="password"
             label="Password"
-            type="password"
+            type={show ? "text" : "password"}
             id="password"
             autoComplete="current-password"
             value={password}
-                onChange={(e) => setPassword(e.target.value)}
+            onChange={(e) => setPassword(e.target.value)}
           />
+          {
+            show ? <Button onClick={() => setShow(false)}>hide password</Button> : <Button onClick={() => setShow(true)}>show password</Button>
+          }
           <Button
             type="submit"
             fullWidth
@@ -73,7 +77,7 @@ const AdminLogin = () => {
           </Button>
         </Box>
       </Box>
-      
+
     </Container>
   )
 }

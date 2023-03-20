@@ -29,17 +29,17 @@
     cursor: pointer;
     font-weight: 500;
     transition-delay: 0.1s;
-    color:rgb(162, 163, 185);
+    color: rgb(162, 163, 185);
 }
 
 .navbar_login:hover,
 .navbar_signup:hover {
-    color:rgb(217, 218, 237);
+    color: rgb(217, 218, 237);
 }
 
 .navbar_login:active,
 .navbar_signup:active {
-    color:rgb(217, 218, 237);
+    color: rgb(217, 218, 237);
 }
 
 .user_section_card {
@@ -54,11 +54,29 @@
 }
 
 .user_section_content {
-    color:#2c387e;
-    margin-top: 10%;
+    /* margin-top: 3%; */
     padding-left: 5%;
     padding-right: 5%;
+    margin-bottom: 5%;
+}
+
+.span1 {
+    font-weight: 600;
+    font-size: 35px;
+    color: #2c387e;
+    text-shadow: 0 2px 2px rgba(25, 26, 121, 0.934);
+}
+
+.span2 {
     font-weight: 500;
+    font-size: 25px;
+    color: #2c387e;
+}
+
+.span3 {
+    font-weight: 400;
+    font-size: 18px;
+    color: #2c387e;
 }
 
 .qrcode_btn {
@@ -72,6 +90,7 @@
     border-radius: 5px;
     cursor: pointer;
     transition-delay: 0.1s;
+    margin-bottom: 4%;
 }
 
 .qrcode_btn:hover {
@@ -90,22 +109,16 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    padding-right: 2%;
 }
 
 .user_section_image {
-    width: 70%;
+    width: 100%;
     height: 90%;
     border-radius: 10px;
-    margin-top: 2%;
 }
 
 .retailer_section_card {
-    /* background-color: rgb(243, 243, 250) !important;
-    box-shadow: 0 8px 32px 0 rgba(121, 122, 145, 0.37);
-    backdrop-filter: blur(0px);
-    -webkit-backdrop-filter: blur(0px);
-    border-radius: 10px;
-    border: 1px solid rgba(255, 255, 255, 0.18); */
     height: 100%;
     box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 }
@@ -123,7 +136,7 @@
 }
 
 .retailer_section_content {
-    color:#2c387e;
+    color: #2c387e;
     margin-top: 0%;
     padding-left: 5%;
     padding-right: 5%;
@@ -133,12 +146,12 @@
 
 .input_retailer {
     width: 60%;
-    margin-right:-4%;
+    margin-right: -4%;
     border-radius: 10px;
     background: #2c387e;
     border: 2px solid rgba(250, 248, 248, 0.913);
     height: 70%;
-    text-indent:20px;
+    text-indent: 20px;
     caret-color: rgb(217, 218, 237);
     color: rgb(217, 218, 237);
     font-weight: 500;

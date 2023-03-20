@@ -39,7 +39,7 @@ export const LoginCompanyReducer = createReducer(initialState, {
     },
     LoadingSuccess: (state, action) => {
         state.loading = false;
-        state.user = action.payload;
+        state.company = action.payload;
         state.isAuthenticated = true;
     },
     LoadingFailure: (state, action) => {
@@ -76,6 +76,26 @@ export const verifyCompanyReducer = createReducer(initialState, {
     verifyCompanyFailure: (state, action) => {
         state.loading = false;
         state.error = action.payload;
+    },
+    clearErrors: (state) => {
+        state.errors = null;
+    },
+})
+
+export const reportProductReducer = createReducer(initialState, {
+    reportProductRequest: (state) => {
+        state.loading = true;
+        state.success = null;
+    },
+    reportProductSuccess: (state, action) => {
+        state.loading = false;
+        state.report = action.payload;
+        state.success = true;
+    },
+    reportProductFailure: (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
+        state.success = false;
     },
     clearErrors: (state) => {
         state.errors = null;

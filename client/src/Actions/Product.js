@@ -82,7 +82,7 @@ export const getProductById = (id, toast) => async (dispatch) => {
     }
 }
 
-export const getAllProducts = (toast) => async (dispatch) => {
+export const getAllProducts = () => async (dispatch) => {
     try {
         dispatch({
             type: "getAllProductsRequest",
@@ -98,13 +98,13 @@ export const getAllProducts = (toast) => async (dispatch) => {
             type: "getAllProductsSuccess",
             payload: data.products,
         });
-        toast.success(data.message);
+        
     } catch (error) {
         dispatch({
             type: "getAllProductsFailure",
             payload: error.response.data.message,
         });
-        toast.error(error.response.data.message);
+        
     }
 }
 

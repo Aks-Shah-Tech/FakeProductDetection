@@ -6,7 +6,8 @@ const {
   rejectRequest,
   registerAdmin,
   loginAdmin,
-  logout
+  logout,
+  report
 } = require('../controllers/admin.controllers');
 const { isAdminAuthenticated } = require("../middlewares/auth");
 
@@ -17,6 +18,8 @@ router.route("/viewRequests").get(isAdminAuthenticated ,getAllRequest);
 router.route("/approveRequest").put(isAdminAuthenticated, approveRequest);
 // Rejects the Company request and Delete it from the Database
 router.route("/rejectRequest").post(isAdminAuthenticated, rejectRequest);
+
+router.route("/report").post(report);
 
 router.route("/register").post(registerAdmin);
 

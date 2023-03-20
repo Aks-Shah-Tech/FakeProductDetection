@@ -14,9 +14,6 @@
     top: 0;
     z-index: 999;
     background-color: #2c387e !important;
-    /* border-radius: 50px;
-    margin-right: 5%;
-    margin-left: 5%; */
 }
 
 .navbar_title {
@@ -24,7 +21,6 @@
     font-weight: 500;
     letter-spacing: 1px;
     font-size: 25px;
-    /* margin-left: 7%; */
     text-transform: uppercase;
     cursor: pointer;
 }
@@ -33,15 +29,15 @@
     cursor: pointer;
     font-weight: 500;
     transition-delay: 0.1s;
-    color:rgb(220, 89, 89);
+    color: rgb(220, 89, 89);
 }
 
 .navbar_logout:hover {
-    color:rgb(228, 8, 8);
+    color: rgb(228, 8, 8);
 }
 
 .navbar_logout:active {
-    color:rgb(234, 13, 13);
+    color: rgb(234, 13, 13);
 }
 
 .table_card {
@@ -51,17 +47,17 @@
 
 .table_card::-webkit-scrollbar {
     width: 0.4em;
-  }
-   
-  .table_card::-webkit-scrollbar-track {
+}
+
+.table_card::-webkit-scrollbar-track {
     box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
-  }
-   
-  .table_card::-webkit-scrollbar-thumb {
+}
+
+.table_card::-webkit-scrollbar-thumb {
     background-color: rgb(27, 32, 42);
     outline: 1px solid rgb(38, 34, 41);
     border-radius: 10px;
-  }
+}
 
 @media screen and (max-width: 764px) {
     .landing_page_container {

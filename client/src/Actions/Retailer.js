@@ -32,7 +32,7 @@ export const registerRetailer = (name, email, address, toast) => async (dispatch
     }
 }
 
-export const getAllRetailers = (toast) => async (dispatch) => {
+export const getAllRetailers = () => async (dispatch) => {
     try {
         dispatch({
             type: "getAllRetailerRequest",
@@ -48,13 +48,13 @@ export const getAllRetailers = (toast) => async (dispatch) => {
             type: "getAllRetailerSuccess",
             payload: data.allRetailers,
         });
-        toast.success(data.message);
+        
     } catch (error) {
         dispatch({
             type: "getAllRetailerFailure",
             payload: error.response.data.message,
         });
-        toast.error(error.response.data.message);
+        
     }
 }
 

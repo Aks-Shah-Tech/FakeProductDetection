@@ -42,8 +42,9 @@
 }
 
 .table_card {
-    height: 300px;
+    height: 340px !important;
     overflow-y: scroll;
+    margin-top: 5%;
 }
 
 .table_card::-webkit-scrollbar {

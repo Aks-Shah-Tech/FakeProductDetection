@@ -13,9 +13,7 @@ import Typography from '@mui/material/Typography';
 import Paper from '@mui/material/Paper';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
-import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
-import { getAllProducts } from '../../../Actions/Product';
 import axios from "axios";
 import QRCode from 'react-qr-code';
 
@@ -97,13 +95,7 @@ function Row(props) {
   );
 }
 
-export default function ProductTable() {
-  const dispatch = useDispatch();
-  const { products } = useSelector((state) => state.getAllProducts);
-
-  useEffect(() => {
-    dispatch(getAllProducts(toast));
-  }, [])
+export default function ProductTable({ products }) {
 
   return (
     <TableContainer component={Paper}>
