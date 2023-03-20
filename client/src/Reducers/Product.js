@@ -23,35 +23,25 @@ export const registerProductReducer = createReducer(initialState, {
 export const verifyProductReducer = createReducer(initialState, {
     verifyProductRequest: (state) => {
         state.loading = true;
+        state.success = null;
     },
     verifyProductSuccess: (state, action) => {
         state.loading = false;
-        state.message = action.payload;
+        state.product = action.payload;
+        state.success = true;
     },
     verifyProductFailure: (state, action) => {
         state.loading = false;
         state.error = action.payload;
+        state.success = false;
     },
     clearErrors: (state) => {
         state.errors = null;
     },
-})
-
-export const getProductReducer = createReducer(initialState, {
-    getProductRequest: (state) => {
-        state.loading = true;
-    },
-    getProductSuccess: (state, action) => {
-        state.loading = false;
-        state.product = action.payload;
-    },
-    getProductFailure: (state, action) => {
-        state.loading = false;
-        state.error = action.payload;
-    },
-    clearErrors: (state) => {
-        state.errors = null;
-    },
+    clearProduct: (state) => {
+        state.success = null;
+        state.product = null;
+    }
 })
 
 export const getAllProductsReducer = createReducer(initialState, {
@@ -63,6 +53,23 @@ export const getAllProductsReducer = createReducer(initialState, {
         state.products = action.payload;
     },
     getAllProductsFailure: (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
+    },
+    clearErrors: (state) => {
+        state.errors = null;
+    },
+})
+
+export const getRetailerReducer = createReducer(initialState, {
+    getRetailerRequest: (state) => {
+        state.loading = true;
+    },
+    getRetailerSuccess: (state, action) => {
+        state.loading = false;
+        state.retailer = action.payload;
+    },
+    getRetailerFailure: (state, action) => {
         state.loading = false;
         state.error = action.payload;
     },

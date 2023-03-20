@@ -2,19 +2,19 @@ import React, { useState, useEffect } from 'react'
 import QRCode from "react-qr-code";
 import "./ViewProduct.css";
 import { useDispatch, useSelector } from 'react-redux';
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { getProductById } from '../../Actions/Product';
 import { toast } from "react-toastify";
 import Typography from '@mui/material/Typography'
+import { Button } from '@mui/material';
+
 
 const ViewProduct = () => {
-    const params = useParams();
-    const dispatch = useDispatch();
-    const { product } = useSelector((state) => state.getProduct);
 
-    useEffect(() => {
-        dispatch(getProductById(params.id, toast));
-    }, [params.id])
+    const dispatch = useDispatch();
+    const { product } = useSelector((state) => state.verifyProduct);
+
+
     return (
         <>
             {
@@ -22,38 +22,59 @@ const ViewProduct = () => {
                     <>
                         <div className="card mx-auto productCard">
                             <div className="card-body">
-                                <div className="row">
-                                    <div className="col-md-6">
-                                        <Typography variant="h4" color="initial">
-                                            Name : <span>{product.name}</span>
-                                        </Typography>
-                                    </div>
-                                    <div className="col-md-6">
-                                        <Typography variant="h4" color="initial">
-                                            Price : <span>{product.price}</span>
-                                        </Typography>
-                                    </div>
-                                </div>
-                                <div className="row">
+                            <div className="row">
                                     <div className="col-md-12">
-                                        <Typography variant="h4" color="initial">
-                                            Description : <span>{product.description}</span>
-                                        </Typography>
-                                    </div>
-                                </div>
-                                <div className="row">
-                                    <div className="col-md-12">
-                                        <Typography variant="h4" color="initial">
-                                            QRCode
-                                        </Typography>
-                                        <div style={{ height: "auto", margin: "0 auto", maxWidth: 64, width: "100%" }}>
+                                        <div style={{ height: "auto", margin: "0 auto", width: "100%", display: "flex", justifyContent: "center"}}>
                                             <QRCode
                                                 size={256}
-                                                style={{ height: "auto", maxWidth: "100%", width: "100%" }}
+                                                style={{ height: "200px",width: "200px" }}
                                                 value={product._id}
                                                 viewBox={`0 0 256 256`}
                                             />
                                         </div>
+                                    </div>
+                                </div>
+                                <div className="row my-3">
+                                    <div className="col-md-12">
+                                        <Typography variant="h5" color="initial" className='text-center'>
+                                            <span style={{fontWeight: 'bold', color: '#4186f2'}}>PRODUCT DETAILS</span>
+                                        </Typography>
+                                    </div>
+                                </div>
+                                <div className="row my-3">
+                                    <div className="col-md-12">
+                                        <Typography variant="h6" color="initial" className='text-center'>
+                                            <span style={{fontWeight: 'bold'}}>Name -</span>  {product.name}
+                                        </Typography>
+                                    </div>
+                                </div>
+                                <div className="row my-3">
+                                    <div className="col-md-12">
+                                        <Typography variant="h6" color="initial" className='text-center'>
+                                        <span style={{fontWeight: 'bold'}}>Price -</span>  {product.price}/-
+                                        </Typography>
+                                    </div>
+                                </div>
+                                <div className="row my-3">
+                                    <div className="col-md-12">
+                                        <Typography variant="h6" color="initial" className='text-center'>
+                                        <span style={{fontWeight: 'bold'}}>Category - </span>
+                                        <span style={{textTransform: "capitalize"}}>{product.category}</span>  
+                                        </Typography>
+                                    </div>
+                                </div>
+                                <div className="row my-3">
+                                    <div className="col-md-12">
+                                        <Typography variant="h6" color="initial" className='text-center'>
+                                        <span style={{fontWeight: 'bold'}}>Description -</span>  {product.description}
+                                        </Typography>
+                                    </div>
+                                </div>
+                                <div className="row my-3">
+                                    <div className="col-md-12" style={{ display: "flex", justifyContent: "center"}}>
+                                        <Link to="/verify/retailer" className='product_details_link'>
+                                        <Button variant='contained'>Verify Retailer</Button>
+                                        </Link>
                                     </div>
                                 </div>
                             </div>

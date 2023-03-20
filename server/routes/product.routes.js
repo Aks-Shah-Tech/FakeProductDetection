@@ -1,10 +1,20 @@
 const express = require('express');
-const { registerProduct, getAllProducts } = require('../controllers/product.controllers.js');
-const { getProductById } = require('../controllers/product.controllers.js');
+const {
+    registerProduct,
+    getAllProducts,
+    getProductByIdForQr
+} = require('../controllers/product.controllers.js');
+
+const {
+    isAuthenticated
+} = require('../middlewares/auth.js');
 const router = express.Router();
 
-router.route('/registerProduct').post(registerProduct);
-router.route('/viewProduct/:id').get(getProductById);
-router.route('/allProducts').get(getAllProducts);
+// Register the Product
+router.route('/registerProduct').post(isAuthenticated, registerProduct);
+// View the Product by Id
+router.route('/viewProductbyId/:id').get(getProductByIdForQr);
+// View all the products
+router.route('/allProducts').get(isAuthenticated, getAllProducts);
 
 module.exports = router;

@@ -1,63 +1,69 @@
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import QrReader from 'react-qr-scanner';
-import { useDispatch } from 'react-redux';
-import {toast} from "react-toastify";
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import { verifyProduct } from '../../Actions/Product';
 
-const previewStyle={
-    height: 700,
-    width: 700,
-    display: 'flex',
-    justifyContent: 'center',
-  }
-  
-  const camStyle={
-    display: 'flex',
-    justifyContent: 'center',
-    marginTop: "-50px",
-  }
-  
-  const textStyle={
-    fontSize: '30px',
-    textAlign: 'center',
-    marginTop: "-50px",
-  }
+const previewStyle = {
+  height: 400,
+  width: 400,
+  display: 'flex',
+  justifyContent: 'center',
+  marginTop: "5%",
+}
+
+const camStyle = {
+  display: 'flex',
+  justifyContent: 'center',
+  marginTop: "-50px",
+}
+
+const textStyle = {
+  fontSize: '30px',
+  textAlign: 'center',
+  marginTop: "-50px",
+}
 
 const VerifyProduct = () => {
-    const [result, setResult] = useState(null);
+  const [result, setResult] = useState(null);
+  const navigate = useNavigate();
 
-    const dispatch = useDispatch();
+  const dispatch = useDispatch();
+  const { product, success } = useSelector((state) => state.verifyProduct);
+  const successRef = useRef();
+
+  useEffect(() => {
+    successRef.current = success;
+    if (success === false) {
+      navigate('/fake/product');
+    }
+    if (success) {
+      navigate('/view/product');
+    }
+
+  }, [success]);
+
 
   const handleScan = (data) => {
     if (data) {
       setResult(data.text);
-      // send scanned data to backend server for verification
+      dispatch(verifyProduct(data.text));
+      // if (product) {
+      //   navigate('/view/product');
+      // }
 
-      dispatch(verifyProduct(data.text, toast));
-
-
-      // fetch('http://localhost:5000/api/v1/verifyProduct', {
-      //   method: 'POST',
-      //   body: JSON.stringify({ qrCode: data.text }),
-      //   headers: { 'Content-Type': 'application/json' },
-      // })
-      //   .then(res => res.json())
-      //   .then(data => {
-      //     console.log(data);
-      //   })
-      //   .catch(err => console.log(err));
     }
   };
   return (
     <>
-    <div style={camStyle}>
-      <QrReader
-        delay={100}
-        onError={console.log}
-        onScan={handleScan}
-        style={previewStyle}
-      />
-    </div>
+      <div style={camStyle}>
+        {!result && <QrReader
+          delay={100}
+          onError={(err) => { console.log(err); }}
+          onScan={handleScan}
+          style={previewStyle}
+        />}
+      </div>
       <p style={textStyle}>Scanned QR Code: {result}</p>
     </>
   )

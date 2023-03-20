@@ -1,6 +1,6 @@
 import axios from "axios";
 
-export const registerProduct = (name, price, description, toast) => async (dispatch) => {
+export const registerProduct = (name, price, description, category, retailerId, toast) => async (dispatch) => {
     try {
         dispatch({
             type: "RegisterProductRequest",
@@ -10,7 +10,7 @@ export const registerProduct = (name, price, description, toast) => async (dispa
             data
         } = await axios.post(
             "/api/v1/registerProduct", {
-                name, price, description
+                name, price, description, category, retailerId
             }, {
                 headers: {
                     "Content-Type": "application/json",
@@ -32,7 +32,7 @@ export const registerProduct = (name, price, description, toast) => async (dispa
     }
 }
 
-export const verifyProduct = (qrCode, toast) => async (dispatch) => {
+export const verifyProduct = (qrCode) => async (dispatch) => {
     try {
         dispatch({
             type: "verifyProductRequest",
@@ -40,27 +40,19 @@ export const verifyProduct = (qrCode, toast) => async (dispatch) => {
 
         const {
             data
-        } = await axios.post(
-            "/api/v1/verifyProduct", {
-                qrCode
-            }, {
-                headers: {
-                    "Content-Type": "application/json",
-                }
-            }
+        } = await axios.get(
+            `/api/v1/viewProductbyId/${qrCode}` 
         )
 
         dispatch({
             type: "verifyProductSuccess",
-            payload: data.message,
+            payload: data.product,
         });
-        toast.success(data.message);
     } catch (error) {
         dispatch({
             type: "verifyProductFailure",
             payload: error.response.data.message,
         });
-        toast.error(error.response.data.message);
     }
 }
 
@@ -114,4 +106,42 @@ export const getAllProducts = (toast) => async (dispatch) => {
         });
         toast.error(error.response.data.message);
     }
+}
+
+export const getRetailer = (retailerId) => async (dispatch) => {
+    try {
+        dispatch({
+            type: "getRetailerRequest",
+        });
+        console.log(retailerId);
+        const {
+            data
+        } = await axios.post(
+            "/api/v1/getretailerbyId", {
+                retailerId
+            }, {
+                headers: {
+                    "Content-Type": "application/json",
+                }
+            }
+        )
+
+        dispatch({
+            type: "getRetailerSuccess",
+            payload: data.retailer,
+        });
+        
+    } catch (error) {
+        dispatch({
+            type: "getRetailerFailure",
+            payload: error.response.data.message,
+        });
+        
+    }
+}
+
+export const clearProduct = () => async (dispatch) => {
+    dispatch({
+        type: "clearProduct",
+    });
 }

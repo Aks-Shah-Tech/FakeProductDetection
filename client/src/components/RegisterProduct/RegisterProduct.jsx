@@ -17,7 +17,8 @@ const RegisterProduct = () => {
 
     const submitHandler = (e) => {
         e.preventDefault();
-        dispatch(registerProduct(name, price, description, toast));
+        // dispatch(registerProduct(name, price, description, toast));
+        console.log(name)
     }
 
     return (

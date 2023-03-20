@@ -1,0 +1,61 @@
+.search {
+    position: relative;
+    box-shadow: 0 0 40px rgba(51, 51, 51, .1);
+
+}
+
+.search input {
+
+    height: 50px;
+    text-indent: 25px;
+    border: 2px solid #d6d4d4;
+
+
+}
+
+
+.search input:focus {
+
+    box-shadow: none;
+    border: 2px solid rgb(2, 5, 74);
+
+
+}
+
+.search .fa-search {
+
+    position: absolute;
+    top: 20px;
+    left: 16px;
+
+}
+
+.search button {
+
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    height: 40px;
+    width: 50px;
+    background: rgb(2, 5, 74);
+
+}
+
+.table_card {
+    height: 300px !important;
+    overflow-y: scroll;
+}
+
+.table_card::-webkit-scrollbar {
+    width: 0.4em;
+  }
+   
+  .table_card::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  }
+   
+  .table_card::-webkit-scrollbar-thumb {
+    background-color: rgb(27, 32, 42);
+    outline: 1px solid rgb(38, 34, 41);
+    border-radius: 10px;
+  }

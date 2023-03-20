@@ -1,0 +1,13 @@
+.login_img {
+    width: 90%;
+    height: 90%;
+}
+
+.register_company {
+    display: flex;
+    justify-content: center;
+}
+
+.register_company_button {
+    width: 60%;
+}
