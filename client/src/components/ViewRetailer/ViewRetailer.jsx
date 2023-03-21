@@ -19,6 +19,17 @@ const ViewRetailer = () => {
             {
                 retailer && (
                     <>
+                    <div className="card mx-auto retailerTopCard">
+                            <div className="card-body">
+                            <div className="row">
+                                    <div className="col-md-12">
+                                    <Typography variant="h5" color="initial" className='text-center'>
+                                            <span style={{fontWeight: 'bold', color: '#5dbb63'}}>PRODUCT VERIFIED SUCCESSFULLY</span>
+                                        </Typography>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                         <div className="card mx-auto retailerCard">
                             <div className="card-body">
                             <div className="row">
@@ -50,7 +61,7 @@ const ViewRetailer = () => {
                                 <div className="row my-3">
                                     <div className="col-md-12">
                                         <Typography variant="h6" color="initial" className='text-center'>
-                                        <span style={{fontWeight: 'bold'}}>Email -</span>  {retailer.email}/-
+                                        <span style={{fontWeight: 'bold'}}>Email -</span>  {retailer.email}
                                         </Typography>
                                     </div>
                                 </div>

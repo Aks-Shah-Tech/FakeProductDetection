@@ -42,7 +42,7 @@
 }
 
 .table_card {
-    height: 340px !important;
+    height: 500px !important;
     overflow-y: scroll;
     margin-top: 5%;
 }

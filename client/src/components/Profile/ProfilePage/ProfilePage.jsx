@@ -17,7 +17,7 @@ const ProfilePage = () => {
                   <div className="col-md-4 d-flex justify-content-center">
                     <img src="https://cdn-icons-png.flaticon.com/512/560/560216.png" alt="profile-image" className='my-3 profile_img' />
                   </div>
-                  <div className="col-md-5 my-4">
+                  <div className="col-md-5 my-5">
                     <div className="row my-2">
                       <div className="col-md-12">
                         <p><b>CIN -</b>
@@ -43,7 +43,7 @@ const ProfilePage = () => {
 
                   </div>
 
-                  <div className="col-md-3 my-2">
+                  <div className="col-md-3 my-4">
                     <div className="row my-2">
                       <div className="col-md-12 d-flex justify-content-center">
                         <p><b>Total Products</b> <br />

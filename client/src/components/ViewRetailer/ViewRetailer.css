@@ -1,3 +1,15 @@
+.retailerTopCard {
+    width: 40%;
+    margin-top: 3%;
+    background-color: rgb(202, 222, 246);
+    border-radius: 15px;
+    box-shadow: 0 8px 32px 0 rgba(32, 40, 150, 0.37);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
 .retailerCard {
     width: 40%;
     margin-top: 3%;

@@ -6,6 +6,7 @@
 
 .profile_card {
     width: 70%;
+    height: 40vh;
     padding: 10px;
     background: rgba(42, 90, 234, 0.4);
     box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
@@ -16,8 +17,8 @@
 }
 
 .profile_img {
-    width: 75%;
-    height: 70%;
+    width: 80%;
+    height: 80%;
 }
 
 .company_details {
