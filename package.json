@@ -1,19 +1,12 @@
 {
   "name": "fake-product",
   "version": "1.0.0",
-  "description": "To make it easy for you to get started with GitLab, here's a list of recommended next steps.",
+  "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://gitlab.com/choturajput0/Fake-Product-Detection.git"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "deploy": "npm run build --prefix client && npm start --prefix server"
   },
   "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://gitlab.com/choturajput0/Fake-Product-Detection/issues"
-  },
-  "homepage": "https://gitlab.com/choturajput0/Fake-Product-Detection#readme"
+  "license": "ISC"
 }
